@@ -10,10 +10,7 @@ import { MongooseModule } from "@nestjs/mongoose";
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb+srv://admin:admin@cluster0.dfscuay.mongodb.net/spotify-clone?retryWrites=true&w=majority'),
-    TrackModule,
-    AlbumModule],
-  controllers: [AlbumController, TrackController],
-  providers: [ AlbumService, TrackService],
-  exports: []
+    TrackModule
+  ],
 })
 export class AppModule {}
