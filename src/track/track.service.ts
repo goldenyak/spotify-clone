@@ -18,19 +18,19 @@ export class TrackService {
   }
 
   async create(dto: CreateTrackDto, picture, audio): Promise<Track> {
-    const audioPath = this.fileService.createFile(FileType.AUDIO, audio)
-    const picturePath = this.fileService.createFile(FileType.IMAGE, picture)
+    const audioPath = this.fileService.createFile(FileType.AUDIO, audio);
+    const picturePath = this.fileService.createFile(FileType.IMAGE, picture);
     const track = await this.trackModel.create({ ...dto, listens: 0, audio: audioPath, picture: picturePath });
     return track;
   }
 
-  async getAll(): Promise<Track[]> {
-    const allTracks = await this.trackModel.find();
+  async getAll(count = 10, offset = 0): Promise<Track[]> {
+    const allTracks = await this.trackModel.find().skip(offset).limit(count);
     return allTracks;
   }
 
   async getOne(id: ObjectId): Promise<Track> {
-    const currentTrack = await this.trackModel.findById(id).populate('comments');
+    const currentTrack = await this.trackModel.findById(id).populate("comments");
     return currentTrack;
   }
 
@@ -41,7 +41,7 @@ export class TrackService {
 
   async deleteAll() {
     await this.trackModel.deleteMany();
-    return "Все нахрен удалено!!!"
+    return "Все нахрен удалено!!!";
 
   }
 
@@ -53,5 +53,11 @@ export class TrackService {
       await track.save();
     }
     return comment;
+  }
+
+  async listen(id: ObjectId) {
+    const track = await this.trackModel.findById(id);
+    track.listens += 1;
+    track.save();
   }
 }
