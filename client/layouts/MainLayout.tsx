@@ -1,3 +1,4 @@
+import { Container } from "@mui/material";
 import React from "react";
 import Navbar from "../components/Navbar";
 
@@ -9,7 +10,9 @@ const MainLayout = (props: MainLayoutProps) => {
   return (
     <>
       <Navbar/>
-      {props.children}
+      <Container style = {{margin: "90px 0"}}>
+        {props.children}
+      </Container>
     </>
   );
 };

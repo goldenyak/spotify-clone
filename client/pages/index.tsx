@@ -14,13 +14,14 @@ const Index = () => {
       <style jsx>
         {`
           .center {
-            margin-top: 150px;
+            box-sizing: border-box;
+            margin: 150px auto 0 auto;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
           }
-          
+
         `}
       </style>
 
