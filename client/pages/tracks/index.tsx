@@ -4,14 +4,42 @@ import MainLayout from "../../layouts/MainLayout";
 import { Box, Button, Card } from "@mui/material";
 import { useRouter } from "next/router";
 import { ITrack } from "../../types/track";
+import TrackList from "../../components/TrackList";
 
 const Index = () => {
   const router = useRouter();
   const tracks: ITrack[] = [
-    {_id: '1', name: 'trek 1', artist: 'some artist', text: 'some text', listens: 2, picture: ' picture.jpg', audio: 'audio.mp3', comments: []},
-    {_id: '2', name: 'trek 2', artist: 'some artist', text: 'some text', listens: 22, picture: ' picture.jpg', audio: 'audio.mp3', comments: []},
-    {_id: '3', name: 'trek 3', artist: 'some artist', text: 'some text', listens: 13, picture: ' picture.jpg', audio: 'audio.mp3', comments: []}
-  ]
+    {
+      _id: "1",
+      name: "trek 1",
+      artist: "some artist",
+      text: "some text",
+      listens: 2,
+      picture: " picture.jpg",
+      audio: "audio.mp3",
+      comments: []
+    },
+    {
+      _id: "2",
+      name: "trek 2",
+      artist: "some artist",
+      text: "some text",
+      listens: 22,
+      picture: " picture.jpg",
+      audio: "audio.mp3",
+      comments: []
+    },
+    {
+      _id: "3",
+      name: "trek 3",
+      artist: "some artist",
+      text: "some text",
+      listens: 13,
+      picture: " picture.jpg",
+      audio: "audio.mp3",
+      comments: []
+    }
+  ];
 
   return (
     <MainLayout>
@@ -28,7 +56,7 @@ const Index = () => {
                       color="secondary">Download</Button>
             </Grid>
           </Box>
-
+          <TrackList tracks={tracks} />
         </Card>
       </Grid>
     </MainLayout>
