@@ -10,7 +10,7 @@ const MainLayout = (props: MainLayoutProps) => {
   return (
     <>
       <Navbar/>
-      <Container style = {{margin: "90px 0"}}>
+      <Container maxWidth="xl" style = {{margin: "90px 0"}}>
         {props.children}
       </Container>
     </>
