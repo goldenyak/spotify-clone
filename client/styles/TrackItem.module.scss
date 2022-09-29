@@ -3,4 +3,27 @@
   align-items: center;
   margin: 20px;
   padding: 10px;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.trackInfo {
+  margin-left: 20px;
+  width: 200px;
+  .name {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .artist {
+    font-size: 14px;
+    font-weight: normal;
+    color: gray;
+  }
+}
+
+.trackAvatar {
+  margin-left: 10px;
+  border-radius: 7px;
 }

@@ -5,18 +5,18 @@ import { Box } from "@mui/material";
 import TrackItem from "./TrackItem";
 
 interface TrackListProps {
-  tracks: ITrack[]
+  tracks: ITrack[];
 }
-const TrackList: React.FC<TrackListProps> = ({tracks}) => {
+
+const TrackList: React.FC<TrackListProps> = ({ tracks }) => {
   return (
-    <Grid container direction={'column'}>
+    <Grid container direction={"column"}>
       <Box p={2}>
         {tracks.map(track =>
-        <TrackItem
+          <TrackItem
             key={track._id}
             track={track}
-        />
-
+          />
         )}
       </Box>
     </Grid>

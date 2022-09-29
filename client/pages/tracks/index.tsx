@@ -15,7 +15,7 @@ const Index = () => {
       artist: "some artist",
       text: "some text",
       listens: 2,
-      picture: " picture.jpg",
+      picture: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bXVzaWN8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
       audio: "audio.mp3",
       comments: []
     },
@@ -25,7 +25,7 @@ const Index = () => {
       artist: "some artist",
       text: "some text",
       listens: 22,
-      picture: " picture.jpg",
+      picture: "https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bXVzaWN8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
       audio: "audio.mp3",
       comments: []
     },
@@ -35,7 +35,7 @@ const Index = () => {
       artist: "some artist",
       text: "some text",
       listens: 13,
-      picture: " picture.jpg",
+      picture: "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fG11c2ljfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
       audio: "audio.mp3",
       comments: []
     }
