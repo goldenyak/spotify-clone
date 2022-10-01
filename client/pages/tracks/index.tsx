@@ -5,9 +5,13 @@ import { Box, Button, Card } from "@mui/material";
 import { useRouter } from "next/router";
 import { ITrack } from "../../types/track";
 import TrackList from "../../components/TrackList";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { useAction } from "../../hooks/useAction";
 
 const Index = () => {
   const router = useRouter();
+  const {} = useAction();
+  const {} = useTypedSelector(state => state.player);
   const tracks: ITrack[] = [
     {
       _id: "1",
