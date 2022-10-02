@@ -48,21 +48,30 @@ const Player = () => {
   };
 
   const setAudio = () => {
-    audio.src = track.audio;
-    audio.volume = volume / 100;
-    audio.onloadedmetadata = () => {
-      setDuration(Math.ceil(audio.duration));
-    };
-    audio.ontimeupdate = () => {
-      setCurrentTime(Math.ceil(audio.currentTime));
-    };
+    if (active) {
+      audio.src = active.audio;
+      audio.volume = volume / 100;
+      audio.onloadedmetadata = () => {
+        setDuration(Math.ceil(audio.duration));
+      };
+      audio.ontimeupdate = () => {
+        setCurrentTime(Math.ceil(audio.currentTime));
+      };
+    }
   };
 
   useEffect(() => {
     if (!audio) {
       audio = new Audio();
+    } else {
+      setAudio();
+      play();
     }
-  }, []);
+  }, [active]);
+
+  if(!active) {
+    return null;
+  }
 
   return (
     <div className={s.player}>
@@ -70,8 +79,8 @@ const Player = () => {
         {pause ? <PlayArrow /> : <Pause />}
       </IconButton>
       <Grid className={styles.trackInfo} container direction="column">
-        <div className={styles.name}>{track.name}</div>
-        <div className={styles.artist}>{track.artist}</div>
+        <div className={styles.name}>{active?.name}</div>
+        <div className={styles.artist}>{active?.artist}</div>
       </Grid>
       <TrackProgress left={currentTime} right={duration} onChangeHandler={changeCurrentTimeHandler} />
       <VolumeUp style={{ marginLeft: "auto" }} />

@@ -7,43 +7,18 @@ import { ITrack } from "../../types/track";
 import TrackList from "../../components/TrackList";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useAction } from "../../hooks/useAction";
+import { wrapper } from "../../store";
 
 const Index = () => {
   const router = useRouter();
-  const {} = useAction();
-  const {} = useTypedSelector(state => state.player);
-  const tracks: ITrack[] = [
-    {
-      _id: "1",
-      name: "trek 1",
-      artist: "some artist",
-      text: "some text",
-      listens: 2,
-      picture: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bXVzaWN8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
-      audio: "audio.mp3",
-      comments: []
-    },
-    {
-      _id: "2",
-      name: "trek 2",
-      artist: "some artist",
-      text: "some text",
-      listens: 22,
-      picture: "https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bXVzaWN8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
-      audio: "audio.mp3",
-      comments: []
-    },
-    {
-      _id: "3",
-      name: "trek 3",
-      artist: "some artist",
-      text: "some text",
-      listens: 13,
-      picture: "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fG11c2ljfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
-      audio: "audio.mp3",
-      comments: []
-    }
-  ];
+  // const {} = useAction();
+  const { tracks, error } = useTypedSelector(state => state.tracks);
+
+  if (error) {
+    return <MainLayout>
+      <h1>{error}</h1>
+    </MainLayout>;
+  }
 
   return (
     <MainLayout>
@@ -68,3 +43,9 @@ const Index = () => {
 };
 
 export default Index;
+
+// // @ts-ignore
+// export const getServerSideProps = wrapper.getServerSideProps(async ({ store }) => {
+//     // store.dispatch;
+//   }
+// );
