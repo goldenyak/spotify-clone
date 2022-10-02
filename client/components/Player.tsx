@@ -13,7 +13,7 @@ let audio;
 
 const Player = () => {
   const { pause, active, volume, duration, currentTime } = useTypedSelector(state => state.player);
-  const { pauseTrack, playTrack } = useAction();
+  const { pauseTrack, playTrack, setVolume, setDuration, setCurrentTime, setActiveTrack } = useAction();
   const track: ITrack =
     {
       _id: "1",
@@ -22,7 +22,7 @@ const Player = () => {
       text: "some text",
       listens: 2,
       picture: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bXVzaWN8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
-      audio: "audio.mp3",
+      audio: "https://sefon.pro/artist/98864-milana-star/",
       comments: []
     };
 
@@ -30,30 +30,52 @@ const Player = () => {
     if (pause) {
       playTrack();
       audio.play();
+      audio.src = track.audio;
+      audio.volume = 0.1;
     } else {
       pauseTrack();
       audio.pause();
     }
   };
 
+  const changeVolumeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    audio.volume = Number(e.target.value) / 100;
+    setVolume(Number(e.target.value));
+  };
+  const changeCurrentTimeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    audio.currentTime = Number(e.target.value);
+    setCurrentTime(Number(e.target.value));
+  };
+
+  const setAudio = () => {
+    audio.src = track.audio;
+    audio.volume = volume / 100;
+    audio.onloadedmetadata = () => {
+      setDuration(Math.ceil(audio.duration));
+    };
+    audio.ontimeupdate = () => {
+      setCurrentTime(Math.ceil(audio.currentTime));
+    };
+  };
+
   useEffect(() => {
-    if(!audio) {
-      audio = new Audio()
+    if (!audio) {
+      audio = new Audio();
     }
-  }, [])
+  }, []);
 
   return (
     <div className={s.player}>
       <IconButton onClick={play}>
-        {pause ? <Pause /> : <PlayArrow />}
+        {pause ? <PlayArrow /> : <Pause />}
       </IconButton>
       <Grid className={styles.trackInfo} container direction="column">
         <div className={styles.name}>{track.name}</div>
         <div className={styles.artist}>{track.artist}</div>
       </Grid>
-      <TrackProgress left={0} right={100} onChangeHandler={() => ({})} />
+      <TrackProgress left={currentTime} right={duration} onChangeHandler={changeCurrentTimeHandler} />
       <VolumeUp style={{ marginLeft: "auto" }} />
-      <TrackProgress left={0} right={100} onChangeHandler={() => ({})} />
+      <TrackProgress left={volume} right={100} onChangeHandler={changeVolumeHandler} />
     </div>
   );
 };
